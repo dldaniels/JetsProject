@@ -1,8 +1,8 @@
 package com.skilldistillery.jet;
 
-public class CargoPlane extends Jet{
+public class CargoPlane extends Jet implements CargoCarrier{
 	
-	
+	//subclass constructors
 
 	public CargoPlane() {
 		super();
@@ -14,7 +14,9 @@ public class CargoPlane extends Jet{
 	
 	}
 	
+	//implements interface
+	
 	public void loadCargo() {
-		
+		System.out.println("I am loading cargo");
 	}
 }

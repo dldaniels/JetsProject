@@ -1,1 +1,12 @@
-a
+FighterJet,F-22 Raptor,1500,1850,143000000
+FighterJet,F-15E Strike Eagle,1875,3000,138000000
+FighterJet,F-16 Fighting Falcon,1500,2622,35000000
+FighterJet,F-35A Lightning II,1200,1367,101300000
+CargoPlane,Airbus 340,568,9072,313000000
+CargoPlane,Boeing 747,614,8357,146000000
+CargoPlane,C-130 Hercules,368,2361,67300000
+CargoPlane,Boeing B-17 Flying Fortress,287,2000,2700000
+FighterJet,X-15,4520,280,9000000
+FighterJet,MK42 Iron Man Armor,3900,8000,16000000
+FighterJet,Eagle-5 Flying Winnebago,1700,4000,20000000
+CargoPlane,Falkor The Luck Dragon,250,6000,90000000
