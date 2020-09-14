@@ -18,12 +18,12 @@ public class JetsApplication {
 		JetsApplication app = new JetsApplication();
 		// call to program methods
 		app.populateAirField();
-		app.launch(app);
+		app.launch();
 
 	}
 
 	// launch method
-	private void launch(JetsApplication app) {
+	private void launch() {
 		// populate airfield with pre written planes from .txt file
 
 		// launch is looped to allow for multiple continuous choices without having to
@@ -36,46 +36,47 @@ public class JetsApplication {
 
 			switch (choice) {
 			case 1:
-				listFleet(airField);
+				listFleet();
 				System.out.println();
 				break;
 			case 2:
-				flyAllJets(airField);
+				flyAllJets();
 				System.out.println();
 				break;
 			case 3:
-				fastestJet(airField);
+				fastestJet();
 				System.out.println();
 				break;
 			case 4:
-				farthestRange(airField);
+				farthestRange();
 				System.out.println();
 				break;
 			case 5:
-				loadCargo(airField);
+				loadCargo();
 				System.out.println();
 				break;
 			case 6:
-				dogFight(airField);
+				dogFight();
 				System.out.println();
 				break;
 			case 7:
-				ohDamn(airField);
+				ohDamn();
 				System.out.println();
 				break;
 			case 8:
 				prepareShipForLudicrousSpeed();
 				break;
 			case 9:
-				addJet(airField);
+				addJet();
 				System.out.println();
 				break;
 			case 10:
-				removeJet(airField);
+				removeJet();
 				System.out.println();
 				break;
 			case 11:
-				System.out.println("Later dude!!!");
+				System.out.println("Later dude!!! See ya next time! ");
+				System.out.println();
 				keepGoing = !true;
 				break;
 			default:
@@ -103,13 +104,13 @@ public class JetsApplication {
 		System.out.println(" •••             5. Load all cargo jets             ••• ");
 		System.out.println(" •••             6. Dogfight!                       ••• ");
 		System.out.println(" •••             7. Uh-Oh!                          ••• ");
-		System.out.println(" •••             8. Add a jet to fleet              ••• ");
-		System.out.println(" •••             9. Remove a jet from fleet         ••• ");
-		System.out.println(" •••             10. Quit                           ••• ");
+		System.out.println(" •••             8. Ludicrous Speed                 ••• ");
+		System.out.println(" •••             9. Add a jet to fleet              ••• ");
+		System.out.println(" •••             10. Remove a jet from fleet        ••• ");
+		System.out.println(" •••             11. Quit                           ••• ");
 		System.out.println(" •••                                                ••• ");
 		System.out.println(" •••••••••••••••••••••••••••••••••••••••••••••••••••••• ");
 		System.out.println(" •••••••••••••••••••••••••••••••••••••••••••••••••••••• ");
-
 	}
 	// User story 3, On program startup, populate the AirField with at least 5 Jets
 	// of different type
@@ -151,9 +152,13 @@ public class JetsApplication {
 
 	// User story 5, listFleet prints out the model, speed, range, and price of each
 	// jet in list
-	private void listFleet(AirField airField) {
+	private void listFleet() {
+		int counter = 1;
 		for (Jet jet : airField.getHangarList()) {
+			System.out.print(counter + ": ");
 			System.out.println(jet.toString());
+			System.out.println();
+			counter++;
 		}
 	}
 
@@ -162,8 +167,9 @@ public class JetsApplication {
 	// and the amount of time the jet can fly until it runs out of fuel (based on
 	// speed and range).
 
-	private void flyAllJets(AirField airField) {
+	private void flyAllJets() {
 		for (Jet jet : airField.getHangarList()) {
+			System.out.println(jet.toString());
 			jet.fly();
 		}
 	}
@@ -172,7 +178,7 @@ public class JetsApplication {
 	// all of the information about a jet.
 
 	// method to determine fastest Jet.
-	private void fastestJet(AirField airFIeld) {
+	private void fastestJet() {
 
 		Jet speedy = new FighterJet();
 		speedy.setSpeed(1);
@@ -182,12 +188,12 @@ public class JetsApplication {
 			}
 		}
 		System.out.println(speedy.toString());
-		System.out.println(" This jet is the fastest of the group and can travel at a top speed of " + speedy.getSpeed()
+		System.out.println("This jet is the fastest of the group and can travel at a top speed of " + speedy.getSpeed()
 				+ " MPH " + " that is Mach " + speedy.getSpeedInMach());
 	}
 
 	// method to determine jet with farthest range capability
-	private void farthestRange(AirField airField) {
+	private void farthestRange() {
 
 		Jet longRange = new FighterJet();
 		longRange.setRange(1);
@@ -198,7 +204,7 @@ public class JetsApplication {
 		}
 		System.out.println(longRange.toString());
 		System.out.println("This jet can fly the furthest distance without having to stop and refuel. "
-				+ longRange.getModel() + " can travel a distance of " + longRange.getRange() + "Miles. ");
+				+ longRange.getModel() + " can travel a distance of " + longRange.getRange() + " Miles. ");
 	}
 
 	// User story 8, The user is presented with an option specific to the interfaces
@@ -209,7 +215,7 @@ public class JetsApplication {
 	// depending on your interfaces.)
 
 	// method to call interface for cargo jets to load cargo
-	private void loadCargo(AirField airField) {
+	private void loadCargo() {
 		for (Jet jet : airField.getHangarList()) {
 			if (jet instanceof CargoCarrier) {
 				((CargoCarrier) jet).loadCargo();
@@ -219,7 +225,7 @@ public class JetsApplication {
 	}
 
 	// method to call interface for fighter jets to dogfight
-	private void dogFight(AirField airField) {
+	private void dogFight() {
 		for (Jet jet : airField.getHangarList()) {
 			if (jet instanceof CombatReady) {
 				((CombatReady) jet).fight();
@@ -227,8 +233,9 @@ public class JetsApplication {
 
 		}
 	}
-
-	private void ohDamn(AirField airField) {
+	
+	//method to call interface for Starscream
+	private void ohDamn() {
 		for (Jet jet : airField.getHangarList()) {
 			if (jet.getModel().equals("F-15E Strike Eagle")) {
 				((Transforms) jet).ohDamn();
@@ -236,6 +243,7 @@ public class JetsApplication {
 		}
 	}
 	
+	//method to call interface for Ludicrous Speed
 	private void prepareShipForLudicrousSpeed() {
 		System.out.println("Are you sure that you wish to engage Ludicrous speed?");
 		System.out.println("Enter Y or N");
@@ -243,11 +251,12 @@ public class JetsApplication {
 		switch (choice) {
 		 case "Y":
 		 case "y":
-			 System.out.println("Okay...buckle up!");
+			 System.out.println("Okay...buckle up! Ludicrous speed! GO!");
 			 break;
 		 case "N":
 		 case "n":
 			 System.out.println("What's the matter Colonel Sanderz? Chicken??");
+			 System.out.println("Buckle up anyway, becasue here we go!! Ludicrous speed! GO!");
 			break;
 		}
 		for (Jet jet : airField.getHangarList() ) {
@@ -260,7 +269,7 @@ public class JetsApplication {
 	// User story 9, A user can add custom jets to the fleet. User will input model,
 	// speed, range, and price.
 	// the newly created jet is then added to the AirField.
-	private void addJet(AirField airField) {
+	private void addJet() {
 		JetImpl userJet = new JetImpl();
 		System.out.println("enter model");
 		userJet.setModel(kb.next());
@@ -276,10 +285,10 @@ public class JetsApplication {
 
 	// User story 10, A user can remove a jet from the fleet.
 	// The user is presented with a sub-menu to select a jet to delete by number.
-	private void removeJet(AirField airField) {
-
-		listFleet(airField);
+	private void removeJet() {
+		listFleet();
 		System.out.println("Please select the corresponding number for the jet you wish to remove from the fleet");
+		System.out.println();
 		int choice = kb.nextInt();
 		airField.removeJet(choice);
 

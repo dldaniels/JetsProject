@@ -17,7 +17,7 @@ public class CargoPlane extends Jet implements CargoCarrier, LudicrousSpeed {
 	// implements interface
 
 	public void loadCargo() {
-		System.out.println("I am " + getModel() + " I am loading cargo");
+		System.out.println("I am " + getModel() + ", I am loading cargo");
 	}
 
 	public void prepareShipForLudicrousSpeed() {

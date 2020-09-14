@@ -19,13 +19,14 @@ public class FighterJet extends Jet implements CombatReady,Transforms{
 	@Override
 	public void fight() {
 		// TODO Auto-generated method stub
-		System.out.println("I am " + getModel() + " I am fighting.");
+		System.out.println("I am " + getModel() + ", I am fighting.");
 
 	}
 	
 	public void ohDamn() {
-		System.out.println(" Oh no!! That " + getModel() + " is not a regular jet!! That is a robot in disquise. It is Starscream who appears to "
-				+ "have come from Cybertron to destroy us all!!! Somebody go find Optimus Prime, Shia Lebeauf, Mark Wahlberg, John Cena!!");
+		System.out.println("Oh no!! That " + getModel() + " is not a regular jet!! That is a robot in disquise.");
+		System.out.println("It is Starscream who appears to have come from Cybertron to destroy us all!!!");
+		System.out.println("Somebody go find Optimus Prime, Shia Lebeauf, Mark Wahlberg, John Cena!!");
 		System.out.println();
 		System.out.println("TREMBLE BEFORE AIR COMMANDER STARSCREAM!!! I WILL RULE YOU ALL!!");
 	}
