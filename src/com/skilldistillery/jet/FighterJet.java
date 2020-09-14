@@ -1,22 +1,29 @@
 package com.skilldistillery.jet;
 
-public class FighterJet extends Jet{
+public class FighterJet extends Jet implements CombatReady{
 	
-	
+	//subclass constructors
 
 	public FighterJet() {
 		super();
 		
 	}
 
-	public FighterJet(String model, double speed, int range, long price, int hitPoints, int numOfMissles) {
+	public FighterJet(String model, double speed, int range, long price) {
 		super(model, speed, range, price);
 	
 	}
 	
+	//implements interface method
+
+	@Override
 	public void fight() {
-		System.out.println("I am fighting");
+		// TODO Auto-generated method stub
+	 System.out.println("I am fighting");
+		
 	}
+	
+
 
 	
 	

@@ -24,17 +24,19 @@ public abstract class Jet {
 	}
 	
 	//super class methods
-	
+	//fly method shows planes flying and determines the amount of time in air based on speed and range
 	public void fly() {
-		double maxDistance = (int) (getRange() / getSpeed());
+		double flightTime = (int) range/speed;
 		System.out.println("I am flying!!");
-		System.out.println(model + " will be able to fly " + maxDistance);
+		System.out.println(model + " is capable of flying " + speed + " MPH for " + flightTime + " hours");
 	}
-	
+	//get speed in mach converts MPH speed to Mach speed
 	public double getSpeedInMach() {
 		double machSpeed = speed / 767.269;
 		return machSpeed;
 	}
+	
+	//getters and setters
 
 	public String getModel() {
 		return model;
@@ -67,6 +69,8 @@ public abstract class Jet {
 	public void setPrice(long price) {
 		this.price = price;
 	}
+	
+	//hashcode
 
 	@Override
 	public int hashCode() {
@@ -80,6 +84,8 @@ public abstract class Jet {
 		result = prime * result + (int) (temp ^ (temp >>> 32));
 		return result;
 	}
+	
+	//equals
 
 	@Override
 	public boolean equals(Object obj) {
@@ -104,6 +110,8 @@ public abstract class Jet {
 		return true;
 	}
 
+	//toString
+	
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();

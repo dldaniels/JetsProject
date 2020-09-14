@@ -1,6 +1,8 @@
 package com.skilldistillery.jet;
 
 public class JetImpl extends Jet{
+	
+	//subclass constructors
 
 	public JetImpl() {
 		super();

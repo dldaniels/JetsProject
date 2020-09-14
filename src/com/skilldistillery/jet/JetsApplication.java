@@ -6,25 +6,76 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.Scanner;
 
+//user story 1, create jets application and main
 public class JetsApplication {
-	//private airField and Scanner
+	// private airField and Scanner
 	private AirField airField = new AirField();
 	private Scanner kb = new Scanner(System.in);
-	
-	//main
+
+	// main
 	public static void main(String[] args) {
-		//instance of JetsApplication
+		// instance of JetsApplication
 		JetsApplication app = new JetsApplication();
-		//call to program methods
-		app.launch();
-		app.displayUserMenu();
+		// call to program methods
+		app.launch(app);
+
 	}
-	//launch method
-	private void launch() {
-		populateAirField(airField, kb);
-		
+
+	// launch method
+	private void launch(JetsApplication app) {
+		// populate airfield with pre written planes from .txt file
+		populateAirField(airField);
+
+		boolean keepGoing;
+		// launch is looped to allow for multiple continuous choices without having to
+		// restart everytime.
+		do {
+
+			displayUserMenu();
+			System.out.println();
+			int choice = kb.nextInt();
+
+			switch (choice) {
+			case 1:
+				listFleet(airField);
+				break;
+			case 2:
+				flyAllJets(airField);
+				break;
+			case 3:
+				fastestJet(airField);
+				break;
+			case 4:
+				farthestRange(airField);
+				break;
+			case 5:
+				loadCargo(airField);
+				break;
+			case 6:
+				dogFight(airField);
+				break;
+			case 7:
+				addJet(airField);
+				break;
+			case 8: 
+				removeJet(airField);
+				break;
+			case 9:
+				System.out.println("Later dude!!!");
+				keepGoing = !true;
+				break;
+			default:
+				System.out.println("Try entering a valid number there hotshot");
+				keepGoing = true;
+				continue;
+			}
+
+		} while (keepGoing = true);
+
 	}
-	//displayUserMenu method
+
+	// User story 4, menu options
+	// displayUserMenu method
 	private void displayUserMenu() {
 		System.out.println("                                ");
 		System.out.println("  Please enter a number to select                          ");
@@ -41,52 +92,147 @@ public class JetsApplication {
 		System.out.println("       8. Remove a jet from fleet                          ");
 		System.out.println("       9. Quit                          ");
 		System.out.println("                                ");
-		System.out.println("                                ");
-		System.out.println("                                ");
-		System.out.println("    ");
-		
+
 	}
-	private void populateAirField(AirField hangar, Scanner kb) {
-		try (BufferedReader bufIn = new BufferedReader (new FileReader("jets.txt"))) {
+	// User story 3, On program startup, populate the AirField with at least 5 Jets
+	// of different type
+	// These jets must be read from a text file, where each line in the file
+	// contains data for a single Jet object
+
+	// Includes try/catch for exception handling, and parsing of file info into
+	// array list
+
+	private void populateAirField(AirField airField) {
+		try (BufferedReader bufIn = new BufferedReader(new FileReader("jets.txt"))) {
 			String line;
-			
+
 			while ((line = bufIn.readLine()) != null) {
 				String[] fields = line.split(",");
-				if(fields[0].equals("CargoPlane")) {
-				String model = fields[1];	
-				double speed = Double.parseDouble(fields[2].trim());
-				int range = Integer.parseInt(fields[3].trim());
-				long price = Long.parseLong(fields[4].trim());
-				CargoPlane cp = new CargoPlane(model,speed,range,price);
-				hangar.addJet(cp);
-				}
-				if(fields[0].equals("FighterJet")) {
-					String model = fields[1];	
+				if (fields[0].equals("CargoPlane")) {
+					String model = fields[1];
 					double speed = Double.parseDouble(fields[2].trim());
 					int range = Integer.parseInt(fields[3].trim());
 					long price = Long.parseLong(fields[4].trim());
-					FighterJet fj = new FighterJet(model,speed,range,price);
-					hangar.addJet(fj);
+					CargoPlane cp = new CargoPlane(model, speed, range, price);
+					airField.addJet(cp);
 				}
-				
+				if (fields[0].equals("FighterJet")) {
+					String model = fields[1];
+					double speed = Double.parseDouble(fields[2].trim());
+					int range = Integer.parseInt(fields[3].trim());
+					long price = Long.parseLong(fields[4].trim());
+					FighterJet fj = new FighterJet(model, speed, range, price);
+					airField.addJet(fj);
+				}
 			}
-			
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
-	private Jet addUserJet (Jet j , Scanner kb) {
-		System.out.println("Enter model");
-		j.setModel(kb.next());
-		System.out.println("Enter speed in MPH");
-		j.setSpeed(kb.nextDouble());
-		System.out.println("Enter range in Miles");
-		j.setRange(kb.nextInt());
-		System.out.println("Enter purchase price");
-		j.setPrice(kb.nextLong());
-		return j;
+
+	// User story 5, listFleet prints out the model, speed, range, and price of each
+	// jet in list
+	private void listFleet(AirField airField) {
+		for (Jet jet : airField.getHangarList()) {
+			System.out.println(jet.toString());
+		}
+	}
+
+	// User story 6, flyAllJets calls the fly() method on the entire fleet of jets.
+	// fly() prints out the jet details
+	// and the amount of time the jet can fly until it runs out of fuel (based on
+	// speed and range).
+
+	private void flyAllJets(AirField airField) {
+		for (Jet jet : airField.getHangarList()) {
+			jet.fly();
+		}
+	}
+
+	// User story 7, The view fastest jet and longest range options both print out
+	// all of the information about a jet.
+
+	// method to determine fastest Jet.
+	private void fastestJet(AirField airFIeld) {
+
+		Jet speedy = new FighterJet();
+		speedy.setSpeed(1);
+		for (Jet jet : airField.getHangarList()) {
+			if (jet.getSpeed() > speedy.getSpeed()) {
+				speedy = jet;
+			}
+		}
+		System.out.println(speedy.toString());
+		System.out.println(speedy.getSpeedInMach());
+	}
+
+	// method to determine jet with farthest range capability
+	private void farthestRange(AirField airField) {
+
+		Jet longRange = new FighterJet();
+		longRange.setRange(1);
+		for (Jet jet : airField.getHangarList()) {
+			if (jet.getRange() > longRange.getRange()) {
+				longRange = jet;
+			}
+		}
+		System.out.println(longRange.toString());
+	}
+
+	// User story 8, The user is presented with an option specific to the interfaces
+	// you created.
+	// For example, Load all Cargo Jets, above, finds all implementors of the
+	// CargoCarrier interface and calls loadCargo() on each.
+	// (Note that the menu text is italicized because your options may be different,
+	// depending on your interfaces.)
+
+	// method to call interface for cargo jets to load cargo
+	private void loadCargo(AirField airField) {
+		for (Jet jet : airField.getHangarList()) {
+			if (jet instanceof CargoCarrier) {
+				((CargoCarrier) jet).loadCargo();
+			}
+
+		}
+	}
+
+	// method to call interface for fighter jets to dogfight
+	private void dogFight(AirField airField) {
+		for (Jet jet : airField.getHangarList()) {
+			if (jet instanceof CombatReady) {
+				((CombatReady) jet).fight();
+			}
+
+		}
+	}
+
+	// User story 9, A user can add custom jets to the fleet. User will input model, speed, range, and price.
+	// the newly created jet is then added to the AirField.
+	private void addJet(AirField airField) {
+		JetImpl userJet = new JetImpl();
+		System.out.println("enter model");
+		userJet.setModel(kb.next());
+		System.out.println("enter speed");
+		userJet.setSpeed(kb.nextDouble());
+		System.out.println("enter range");
+		userJet.setRange(kb.nextInt());
+		System.out.println("enter price");
+		userJet.setPrice(kb.nextLong());
+		airField.addJet(userJet);
+		System.out.println(userJet.toString());
+	}
+
+	// User story 10, A user can remove a jet from the fleet.
+	// The user is presented with a sub-menu to select a jet to delete by number.
+	private void removeJet(AirField airField) {
+		listFleet(airField);
+		System.out.println("Please select the corresponding number for the jet you wish to remove from the fleet");
+		int choice = kb.nextInt();
+		airField.removeJet(choice);
+		
+		
 	}
 
 }
