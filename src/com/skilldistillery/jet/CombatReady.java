@@ -1,8 +1,8 @@
 package com.skilldistillery.jet;
 
 public interface CombatReady {
-	
-	//interface method
+
+	// interface method
 
 	public void fight();
 }

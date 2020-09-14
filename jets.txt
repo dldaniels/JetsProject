@@ -10,3 +10,4 @@ FighterJet,X-15,4520,280,9000000
 FighterJet,MK42 Iron Man Armor,3900,8000,16000000
 FighterJet,Eagle-5 Flying Winnebago,1700,4000,20000000
 CargoPlane,Falkor The Luck Dragon,250,6000,90000000
+CargoPlane,Spaceball One,1000,7500,2200000000
