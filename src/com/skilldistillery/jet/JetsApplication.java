@@ -19,7 +19,7 @@ public class JetsApplication {
 		// call to program methods
 		app.populateAirField();
 		app.launch();
-
+		app.scannerClose();
 	}
 
 	// launch method
@@ -233,8 +233,8 @@ public class JetsApplication {
 
 		}
 	}
-	
-	//method to call interface for Starscream
+
+	// method to call interface for Starscream
 	private void ohDamn() {
 		for (Jet jet : airField.getHangarList()) {
 			if (jet.getModel().equals("F-15E Strike Eagle")) {
@@ -242,24 +242,24 @@ public class JetsApplication {
 			}
 		}
 	}
-	
-	//method to call interface for Ludicrous Speed
+
+	// method to call interface for Ludicrous Speed
 	private void prepareShipForLudicrousSpeed() {
 		System.out.println("Are you sure that you wish to engage Ludicrous speed?");
 		System.out.println("Enter Y or N");
 		String choice = kb.next();
 		switch (choice) {
-		 case "Y":
-		 case "y":
-			 System.out.println("Okay...buckle up! Ludicrous speed! GO!");
-			 break;
-		 case "N":
-		 case "n":
-			 System.out.println("What's the matter Colonel Sanderz? Chicken??");
-			 System.out.println("Buckle up anyway, becasue here we go!! Ludicrous speed! GO!");
+		case "Y":
+		case "y":
+			System.out.println("Okay...buckle up! Ludicrous speed! GO!");
+			break;
+		case "N":
+		case "n":
+			System.out.println("What's the matter Colonel Sanderz? Chicken??");
+			System.out.println("Buckle up anyway, becasue here we go!! Ludicrous speed! GO!");
 			break;
 		}
-		for (Jet jet : airField.getHangarList() ) {
+		for (Jet jet : airField.getHangarList()) {
 			if (jet.getModel().equals("Spaceball One")) {
 				((LudicrousSpeed) jet).prepareShipForLudicrousSpeed();
 			}
@@ -281,6 +281,7 @@ public class JetsApplication {
 		userJet.setPrice(kb.nextLong());
 		airField.addJet(userJet);
 		System.out.println(userJet.toString());
+		System.out.println("This jet has now been added to the fleet!");
 	}
 
 	// User story 10, A user can remove a jet from the fleet.
@@ -291,7 +292,11 @@ public class JetsApplication {
 		System.out.println();
 		int choice = kb.nextInt();
 		airField.removeJet(choice);
-
+		
 	}
-
+	private void scannerClose() {
+		kb.close();
+	}
+	
+	
 }

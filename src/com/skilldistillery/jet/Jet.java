@@ -30,11 +30,11 @@ public abstract class Jet {
 		double flightTime = (int) range / speed;
 		System.out.println("I am flying!!");
 		System.out.print(model + " is capable of flying " + speed + " MPH for ");
-		System.out.printf("%.2f" , flightTime);
+		System.out.printf("%.2f", flightTime);
 		System.out.print(" hours.");
 		System.out.println();
 		System.out.println();
-		
+
 	}
 
 	// get speed in mach converts MPH speed to Mach speed

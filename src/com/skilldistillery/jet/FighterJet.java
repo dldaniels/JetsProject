@@ -1,6 +1,6 @@
 package com.skilldistillery.jet;
 
-public class FighterJet extends Jet implements CombatReady,Transforms{
+public class FighterJet extends Jet implements CombatReady, Transforms {
 
 	// subclass constructors
 
@@ -22,7 +22,7 @@ public class FighterJet extends Jet implements CombatReady,Transforms{
 		System.out.println("I am " + getModel() + ", I am fighting.");
 
 	}
-	
+
 	public void ohDamn() {
 		System.out.println("Oh no!! That " + getModel() + " is not a regular jet!! That is a robot in disquise.");
 		System.out.println("It is Starscream who appears to have come from Cybertron to destroy us all!!!");
