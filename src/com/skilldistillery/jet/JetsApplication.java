@@ -65,14 +65,16 @@ public class JetsApplication {
 				break;
 			case 8:
 				prepareShipForLudicrousSpeed();
+				break;
+			case 9:
 				addJet(airField);
 				System.out.println();
 				break;
-			case 9:
+			case 10:
 				removeJet(airField);
 				System.out.println();
 				break;
-			case 10:
+			case 11:
 				System.out.println("Later dude!!!");
 				keepGoing = !true;
 				break;
